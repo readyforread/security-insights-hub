@@ -1,26 +1,128 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- TODO: Set the document title to the name of your application -->
-    <title>Lovable App</title>
-    <meta name="description" content="Lovable Generated Project" />
-    <meta name="author" content="Lovable" />
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecureBlog - Блог о кибербезопасности</title>
+    <meta name="description" content="Блог о кибербезопасности, уязвимостях и защите информации">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">🛡️</span>
+                <span class="logo-text">SecureBlog</span>
+            </a>
+            <nav class="nav">
+                <a href="index.html" class="nav-link active">Главная</a>
+                <a href="about.html" class="nav-link">О блоге</a>
+            </nav>
+            <button class="menu-btn" id="menuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
 
-    <!-- TODO: Update og:title to match your application name -->
-    <meta property="og:title" content="Lovable App" />
-    <meta property="og:description" content="Lovable Generated Project" />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1 class="hero-title">Блог о <span class="highlight">кибербезопасности</span></h1>
+                <p class="hero-subtitle">Анализ уязвимостей, разбор атак и методы защиты информационных систем</p>
+            </div>
+        </section>
 
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@Lovable" />
-    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
-  </head>
+        <section class="posts">
+            <div class="container">
+                <h2 class="section-title">Последние публикации</h2>
+                <div class="posts-grid">
+                    <!-- Post 1 -->
+                    <article class="post-card">
+                        <div class="post-image">
+                            <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&h=400&fit=crop" alt="Log4j">
+                            <span class="cvss-badge cvss-critical">CVSS: 10.0</span>
+                        </div>
+                        <div class="post-content">
+                            <div class="post-meta">
+                                <span class="post-date">15 января 2024</span>
+                                <span class="post-cve">CVE-2021-44228</span>
+                            </div>
+                            <h3 class="post-title">Критическая уязвимость в Log4j: CVE-2021-44228</h3>
+                            <p class="post-excerpt">Анализ одной из самых опасных уязвимостей в истории Java-экосистемы. Как защитить свои системы от Log4Shell.</p>
+                            <div class="post-tags">
+                                <span class="tag">RCE</span>
+                                <span class="tag">Java</span>
+                                <span class="tag">Log4j</span>
+                                <span class="tag">Critical</span>
+                            </div>
+                            <a href="post.html?id=1" class="read-more">Читать далее →</a>
+                        </div>
+                    </article>
 
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+                    <!-- Post 2 -->
+                    <article class="post-card">
+                        <div class="post-image">
+                            <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=400&fit=crop" alt="SQL Injection">
+                            <span class="cvss-badge cvss-high">CVSS: 7.5</span>
+                        </div>
+                        <div class="post-content">
+                            <div class="post-meta">
+                                <span class="post-date">10 января 2024</span>
+                                <span class="post-cve">CWE-89</span>
+                            </div>
+                            <h3 class="post-title">SQL-инъекции: классика кибератак</h3>
+                            <p class="post-excerpt">Подробный разбор техник SQL-инъекций и методов защиты веб-приложений от этого типа атак.</p>
+                            <div class="post-tags">
+                                <span class="tag">SQL</span>
+                                <span class="tag">Web</span>
+                                <span class="tag">Injection</span>
+                                <span class="tag">Database</span>
+                            </div>
+                            <a href="post.html?id=2" class="read-more">Читать далее →</a>
+                        </div>
+                    </article>
+
+                    <!-- Post 3 -->
+                    <article class="post-card">
+                        <div class="post-image">
+                            <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&h=400&fit=crop" alt="XSS">
+                            <span class="cvss-badge cvss-medium">CVSS: 6.1</span>
+                        </div>
+                        <div class="post-content">
+                            <div class="post-meta">
+                                <span class="post-date">5 января 2024</span>
+                                <span class="post-cve">CWE-79</span>
+                            </div>
+                            <h3 class="post-title">XSS атаки: защита пользователей</h3>
+                            <p class="post-excerpt">Cross-Site Scripting остаётся одной из главных угроз для веб-приложений. Разбираем типы XSS и методы защиты.</p>
+                            <div class="post-tags">
+                                <span class="tag">XSS</span>
+                                <span class="tag">Web</span>
+                                <span class="tag">JavaScript</span>
+                                <span class="tag">Browser</span>
+                            </div>
+                            <a href="post.html?id=3" class="read-more">Читать далее →</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <span class="logo-icon">🛡️</span>
+                    <span class="logo-text">SecureBlog</span>
+                </div>
+                <p class="footer-text">© 2024 SecureBlog. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
 </html>
