@@ -16,12 +16,21 @@ image: https://images.unsplash.com/photo-1555949963-aa79dcee981c
 
 ### Установка тестового окружения
 
-Код для развертывания уязвимой версии через Docker:
+### Код для развертывания уязвимой версии через Docker
+
 ```dockerfile
 FROM ubuntu:20.04
+
 RUN apt-get update && apt-get install -y \
     apache2 \
     php7.4 \
-    libapache2-mod-php7.4
+    libapache2-mod-php7.4 \
+    unzip
+
 COPY webcraft-v3.4.1.zip /var/www/html/
-RUN unzip webcraft-v3.4.1.zip
+
+RUN unzip /var/www/html/webcraft-v3.4.1.zip -d /var/www/html/
+
+EXPOSE 80
+
+CMD ["apachectl", "-D", "FOREGROUND"]
