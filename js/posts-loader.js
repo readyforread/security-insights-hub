@@ -2,7 +2,7 @@
 const PostsLoader = {
     // List of post files (update this when adding new posts)
     postFiles: [
-        'first-post.md'
+        'post.md'
     ],
     
     posts: [],
