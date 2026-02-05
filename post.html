@@ -3,63 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Статья - SecureBlog</title>
-    <meta name="description" content="Блог о кибербезопасности">
+    <title>Статья - Security Blog</title>
+    <meta name="description" content="Исследования в области информационной безопасности">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <header class="header">
         <div class="container">
-            <a href="index.html" class="logo">
-                <span class="logo-icon">🛡️</span>
-                <span class="logo-text">SecureBlog</span>
-            </a>
+            <a href="index.html" class="logo">Security Blog</a>
             <nav class="nav">
-                <a href="index.html" class="nav-link">Главная</a>
+                <a href="index.html" class="nav-link">Посты</a>
                 <a href="about.html" class="nav-link">О блоге</a>
             </nav>
-            <button class="menu-btn" id="menuBtn">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
         </div>
     </header>
 
-    <main>
+    <main class="main">
         <article class="post-full" id="postContent">
-            <!-- Content will be loaded by JavaScript -->
-        </article>
-
-        <section class="comments-section">
             <div class="container">
-                <h3 class="comments-title">Комментарии</h3>
-                <div id="commentsList" class="comments-list">
-                    <!-- Comments will be loaded by JavaScript -->
-                </div>
-                <form class="comment-form" id="commentForm">
-                    <h4>Оставить комментарий</h4>
-                    <input type="text" id="authorInput" placeholder="Ваше имя" required>
-                    <textarea id="contentInput" placeholder="Ваш комментарий" rows="4" required></textarea>
-                    <button type="submit" class="btn btn-primary">Отправить</button>
-                </form>
+                <p class="loading">Загрузка...</p>
             </div>
-        </section>
+        </article>
     </main>
 
     <footer class="footer">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <span class="logo-icon">🛡️</span>
-                    <span class="logo-text">SecureBlog</span>
-                </div>
-                <p class="footer-text">© 2024 SecureBlog. Все права защищены.</p>
-            </div>
+            <p>&copy; 2024</p>
         </div>
     </footer>
 
-    <script src="js/posts-data.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/markdown-parser.js"></script>
+    <script src="js/posts-loader.js"></script>
     <script src="js/post.js"></script>
 </body>
 </html>
