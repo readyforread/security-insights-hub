@@ -1,111 +1,74 @@
-// Get post ID from URL
-function getPostId() {
-    const urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get('id');
+// Post page
+function getPostSlug() {
+    const params = new URLSearchParams(window.location.search);
+    return params.get('id');
 }
 
-// Render post content
-function renderPost() {
-    const postId = getPostId();
-    const post = postsData.find(p => p.id === postId);
+function getCvssClass(cvss) {
+    if (cvss >= 9.0) return 'cvss-critical';
+    if (cvss >= 7.0) return 'cvss-high';
+    if (cvss >= 4.0) return 'cvss-medium';
+    if (cvss > 0) return 'cvss-low';
+    return '';
+}
+
+function formatDate(dateStr) {
+    const date = new Date(dateStr);
+    return date.toLocaleDateString('ru-RU', { 
+        day: 'numeric', 
+        month: 'long', 
+        year: 'numeric' 
+    });
+}
+
+async function renderPost() {
+    const container = document.getElementById('postContent');
+    const slug = getPostSlug();
     
-    if (!post) {
-        document.getElementById('postContent').innerHTML = `
+    if (!slug) {
+        container.innerHTML = '<div class="container"><p>Пост не найден</p><a href="index.html" class="back-link">← Назад</a></div>';
+        return;
+    }
+    
+    try {
+        await PostsLoader.loadAll();
+        const post = PostsLoader.getPost(slug);
+        
+        if (!post) {
+            container.innerHTML = '<div class="container"><p>Пост не найден</p><a href="index.html" class="back-link">← Назад</a></div>';
+            return;
+        }
+        
+        document.title = `${post.title} - Security Blog`;
+        
+        let metaItems = [`<span>${formatDate(post.date)}</span>`];
+        if (post.author) metaItems.push(`<span>${post.author}</span>`);
+        if (post.cvss) metaItems.push(`<span class="cvss-badge ${getCvssClass(post.cvss)}">CVSS ${post.cvss}</span>`);
+        if (post.cve) metaItems.push(`<span>${post.cve}</span>`);
+        
+        const tagsHtml = post.tags.length > 0 
+            ? `<div class="post-tags">${post.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>`
+            : '';
+        
+        const contentHtml = MarkdownParser.toHTML(post.content);
+        
+        container.innerHTML = `
             <div class="container">
-                <p>Статья не найдена</p>
-                <a href="index.html" class="back-link">← Вернуться на главную</a>
+                <div class="post-header">
+                    <a href="index.html" class="back-link">← Назад к постам</a>
+                    <h1>${post.title}</h1>
+                    <div class="post-meta">${metaItems.join('')}</div>
+                    ${tagsHtml}
+                </div>
+                <div class="post-body">
+                    ${contentHtml}
+                </div>
             </div>
         `;
-        return;
+    } catch (e) {
+        container.innerHTML = '<div class="container"><p>Ошибка загрузки</p></div>';
+        console.error(e);
     }
-    
-    // Update page title
-    document.title = post.title + ' - SecureBlog';
-    
-    const cvssClass = getCvssClass(post.cvss);
-    
-    document.getElementById('postContent').innerHTML = `
-        <div class="container">
-            <div class="post-header">
-                <a href="index.html" class="back-link">← Назад к статьям</a>
-                <h1 class="post-title">${post.title}</h1>
-                <div class="post-meta">
-                    <span class="post-date">${post.date}</span>
-                    <span class="post-author">Автор: ${post.author}</span>
-                </div>
-                <div class="post-tags">
-                    ${post.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
-                </div>
-            </div>
-            <div class="post-image">
-                <img src="${post.image}" alt="${post.title}">
-                <span class="cvss-badge ${cvssClass}">CVSS: ${post.cvss}</span>
-            </div>
-            ${post.cve ? `<p class="post-cve" style="margin-bottom: 1rem; color: var(--accent); font-family: monospace;">${post.cve}</p>` : ''}
-            <div class="post-body">
-                ${post.content}
-            </div>
-        </div>
-    `;
 }
 
-// Render comments
-function renderComments() {
-    const postId = getPostId();
-    const comments = getComments().filter(c => c.postId === postId);
-    const container = document.getElementById('commentsList');
-    
-    if (comments.length === 0) {
-        container.innerHTML = '<p style="color: var(--text-secondary);">Пока нет комментариев. Будьте первым!</p>';
-        return;
-    }
-    
-    container.innerHTML = comments.map(comment => `
-        <div class="comment">
-            <div class="comment-header">
-                <span class="comment-author">${comment.author}</span>
-                <span class="comment-date">${comment.date}</span>
-            </div>
-            <p class="comment-content">${comment.content}</p>
-        </div>
-    `).join('');
-}
-
-// Handle comment form submission
-document.getElementById('commentForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    const author = document.getElementById('authorInput').value.trim();
-    const content = document.getElementById('contentInput').value.trim();
-    
-    if (!author || !content) return;
-    
-    const comments = getComments();
-    const newComment = {
-        id: Date.now().toString(),
-        postId: getPostId(),
-        author: author,
-        content: content,
-        date: new Date().toLocaleDateString('ru-RU', { 
-            day: 'numeric', 
-            month: 'long', 
-            year: 'numeric' 
-        })
-    };
-    
-    comments.push(newComment);
-    saveComments(comments);
-    
-    // Clear form
-    document.getElementById('authorInput').value = '';
-    document.getElementById('contentInput').value = '';
-    
-    // Re-render comments
-    renderComments();
-});
-
-// Initialize page
-document.addEventListener('DOMContentLoaded', function() {
-    renderPost();
-    renderComments();
-});
+document.addEventListener('DOMContentLoaded', renderPost);

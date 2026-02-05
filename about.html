@@ -3,107 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>О блоге - SecureBlog</title>
-    <meta name="description" content="Информация о блоге SecureBlog">
+    <title>О блоге - Security Blog</title>
+    <meta name="description" content="Исследования в области информационной безопасности">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <header class="header">
         <div class="container">
-            <a href="index.html" class="logo">
-                <span class="logo-icon">🛡️</span>
-                <span class="logo-text">SecureBlog</span>
-            </a>
+            <a href="index.html" class="logo">Security Blog</a>
             <nav class="nav">
-                <a href="index.html" class="nav-link">Главная</a>
+                <a href="index.html" class="nav-link">Посты</a>
                 <a href="about.html" class="nav-link active">О блоге</a>
             </nav>
-            <button class="menu-btn" id="menuBtn">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
         </div>
     </header>
 
-    <main>
-        <section class="about-hero">
-            <div class="container">
-                <h1 class="page-title">О блоге</h1>
-            </div>
-        </section>
+    <main class="main">
+        <div class="container">
+            <article class="about-page">
+                <h1>О блоге</h1>
+                <p>Здесь публикуются материалы по информационной безопасности: разборы уязвимостей, анализ CVE, практические рекомендации.</p>
+                
+                <h2>Шкала CVSS</h2>
+                <table class="cvss-table">
+                    <thead>
+                        <tr>
+                            <th>Оценка</th>
+                            <th>Уровень</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>9.0 – 10.0</td><td><span class="cvss-badge cvss-critical">Critical</span></td></tr>
+                        <tr><td>7.0 – 8.9</td><td><span class="cvss-badge cvss-high">High</span></td></tr>
+                        <tr><td>4.0 – 6.9</td><td><span class="cvss-badge cvss-medium">Medium</span></td></tr>
+                        <tr><td>0.1 – 3.9</td><td><span class="cvss-badge cvss-low">Low</span></td></tr>
+                    </tbody>
+                </table>
 
-        <section class="about-content">
-            <div class="container">
-                <div class="about-card">
-                    <h2>🛡️ SecureBlog</h2>
-                    <p>Добро пожаловать в SecureBlog — ваш надёжный источник информации о кибербезопасности, уязвимостях и методах защиты информационных систем.</p>
-                    
-                    <h3>Наша миссия</h3>
-                    <p>Мы стремимся сделать мир цифровых технологий безопаснее, предоставляя качественный анализ уязвимостей, разбор реальных атак и практические рекомендации по защите.</p>
-                    
-                    <h3>Что мы публикуем</h3>
-                    <ul>
-                        <li>Анализ критических уязвимостей (CVE)</li>
-                        <li>Разбор техник атак и методов защиты</li>
-                        <li>Обзоры инструментов безопасности</li>
-                        <li>Практические руководства по hardening</li>
-                        <li>Новости мира кибербезопасности</li>
-                    </ul>
-                </div>
-
-                <div class="about-card">
-                    <h2>📊 Шкала CVSS</h2>
-                    <p>Common Vulnerability Scoring System (CVSS) — стандартная система оценки критичности уязвимостей.</p>
-                    
-                    <table class="cvss-table">
-                        <thead>
-                            <tr>
-                                <th>Оценка</th>
-                                <th>Уровень</th>
-                                <th>Описание</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="cvss-row-critical">
-                                <td>9.0 - 10.0</td>
-                                <td><span class="cvss-badge cvss-critical">CRITICAL</span></td>
-                                <td>Критическая уязвимость, требует немедленного исправления</td>
-                            </tr>
-                            <tr class="cvss-row-high">
-                                <td>7.0 - 8.9</td>
-                                <td><span class="cvss-badge cvss-high">HIGH</span></td>
-                                <td>Высокий риск, приоритетное исправление</td>
-                            </tr>
-                            <tr class="cvss-row-medium">
-                                <td>4.0 - 6.9</td>
-                                <td><span class="cvss-badge cvss-medium">MEDIUM</span></td>
-                                <td>Средний риск, плановое исправление</td>
-                            </tr>
-                            <tr class="cvss-row-low">
-                                <td>0.1 - 3.9</td>
-                                <td><span class="cvss-badge cvss-low">LOW</span></td>
-                                <td>Низкий риск, исправление по возможности</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </section>
+                <h2>Контакты</h2>
+                <p>Связаться можно через GitHub или Telegram.</p>
+            </article>
+        </div>
     </main>
 
     <footer class="footer">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <span class="logo-icon">🛡️</span>
-                    <span class="logo-text">SecureBlog</span>
-                </div>
-                <p class="footer-text">© 2024 SecureBlog. Все права защищены.</p>
-            </div>
+            <p>&copy; 2024</p>
         </div>
     </footer>
-
-    <script src="js/main.js"></script>
 </body>
 </html>
